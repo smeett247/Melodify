@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Repeat, Shuffle, Heart } from 'lucide-react';
 
+// Add this near the imports
+import AudioVisualizer from './AudioVisualizer';
+
 export default function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
@@ -107,3 +110,18 @@ export default function Player() {
     </div>
   );
 }
+
+// Add this to your component's state
+const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
+
+// Add this after your audio element
+useEffect(() => {
+  if (audioRef.current) {
+    setAudioElement(audioRef.current);
+  }
+}, []);
+
+// Add this before the player controls
+<div className="w-full max-w-xl mx-auto mb-4">
+  <AudioVisualizer audioElement={audioElement} />
+</div>
