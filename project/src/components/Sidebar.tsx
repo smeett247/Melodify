@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Search, Library, PlusCircle, Headphones, Heart, Compass, Star, Clock } from 'lucide-react';
+import { Home, Search, Library, PlusCircle, Headphones, Heart, Compass, Star, Clock, CreditCard } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const playlists = [
@@ -52,17 +52,6 @@ export default function Sidebar() {
             <span>Search</span>
           </Link>
           <Link
-            to="/app/explore"
-            className={`flex items-center gap-4 transition-colors ${
-              isActive('/app/explore') 
-                ? 'text-white bg-white/10 rounded-lg p-2' 
-                : 'text-gray-400 hover:text-white p-2 hover:bg-white/5 rounded-lg'
-            }`}
-          >
-            <Compass className="w-6 h-6" />
-            <span>Explore</span>
-          </Link>
-          <Link
             to="/app/library"
             className={`flex items-center gap-4 transition-colors ${
               isActive('/app/library') 
@@ -73,22 +62,39 @@ export default function Sidebar() {
             <Library className="w-6 h-6" />
             <span>Your Library</span>
           </Link>
+          <Link
+            to="/app/premium"
+            className={`flex items-center gap-4 transition-colors ${
+              isActive('/app/premium') 
+                ? 'text-white bg-white/10 rounded-lg p-2' 
+                : 'text-gray-400 hover:text-white p-2 hover:bg-white/5 rounded-lg'
+            }`}
+          >
+            <CreditCard className="w-6 h-6" />
+            <span>Premium</span>
+          </Link>
         </nav>
       </div>
       
       <div className="mt-8 px-6">
-        <button className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-full p-2 hover:bg-white/5 rounded-lg">
+        <Link 
+          to="/app/create-playlist"
+          className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-full p-2 hover:bg-white/5 rounded-lg"
+        >
           <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-sm flex items-center justify-center">
             <PlusCircle className="w-4 h-4 text-white" />
           </div>
           <span>Create Playlist</span>
-        </button>
-        <button className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-full mt-4 p-2 hover:bg-white/5 rounded-lg">
+        </Link>
+        <Link 
+          to="/app/liked"
+          className="flex items-center gap-4 text-gray-400 hover:text-white transition-colors group w-full mt-4 p-2 hover:bg-white/5 rounded-lg"
+        >
           <div className="w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-500 rounded-sm flex items-center justify-center">
             <Heart className="w-4 h-4 text-white" />
           </div>
           <span>Liked Songs</span>
-        </button>
+        </Link>
       </div>
       
       <div className="mt-6 px-6 flex-1 overflow-y-auto">
